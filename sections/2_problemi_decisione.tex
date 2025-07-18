@@ -1,0 +1,20 @@
+\section{Problemi di decisione}
+Tutti i problemi dove l'output é binario ($O_\pi = \{0,1\}$) sono problemi di decisione. Si avrá quindi una sola risposta possibile, o sí o no; degli esempi possono essere stabilire se un numero é primo o stabilire se una formula logica é soddisfacibile.
+
+\subsection{Classi di complessità}
+Si prenderanno in esame delle classi di problemi in modo da non dover studiare ogni problema singolarmente. Le classi piú note sono $P$ e $NP$:
+\begin{itemize}
+    \item $P$ é la classe dei problemi che possono essere risolti in tempo polinomiale. Chiedersi se un problema appartiene a $P$ equivale a chiedersi se puó essere risolto in maniere efficiente.
+    \item $NP$ é la classe dei problemi risolvibili in tempo polinomiale da una macchina non deterministica.
+\end{itemize}
+
+Una \textbf{macchina non deterministica} è un modello teorico di calcolatore che, in ogni stato di computazione, può scegliere tra molteplici possibili transizioni. In altre parole, può esplorare simultaneamente tutte le possibili scelte a ogni passo computazionale, come se disponesse di infinite risorse di calcolo parallele. Se almeno una delle ramificazioni porta a una soluzione accettante, la macchina accetta l'input, altrimenti lo rifiuta (ovvero da come output sí o no). Questo tipo di macchina é puramente teorico. 
+
+Molti problemi noti non si sa se appartengono a $P$ ma sicuramente appartengono a $NP$. Il piú famoso é il problema CNF-SAT.
+
+\subsubsection{CNF-SAT}
+CNF-SAT prende in input una formula logica $\varphi$ in forma normale congiunta del tipo:
+$$ \varphi = (x_1 \lor \lnot x_2) \land (x_1 \lor x_5) \land (\lnot x_4 \lor x_3) $$
+Scopo del problema é determinare se $\varphi$ é soddisfacibile ovvero se esiste un'assegnamento delle variabili $x_i$ tale che $\varphi$ sia vera.
+
+In una macchina non deterministica questo problema risulta banale: creo un albero di computazione per ogni possibile assegnamento di variabile e in ognuno controllo se la formula é soddisfatta o meno. In ogni ramo di calcolo basterá controllare le $n$ variabili. Il tempo é quindi polinomiale in una macchina non deterministica e quindi CNF-SAT appartiene a $NP$.

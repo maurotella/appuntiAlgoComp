@@ -1,0 +1,72 @@
+\section{Introduzione}
+\subsection{Problemi}
+\begin{definizione}[Problema]
+    Un problema $\pi$ é una tripla $(I_{\pi},O_{\pi},\text{Sol})$ dove:
+    \begin{itemize}
+        \item $I_{\pi}$ é insieme dei possibili input
+        \item $O_{\pi}$ é insieme dei possibili output
+        \item $\text{Sol}_{\pi}:I_{\pi}\rightarrow 2^{O_{\pi}} \setminus \{\varnothing \}$ é la funzione che preso l'input restituisce gli output corretti 
+    \end{itemize}
+\end{definizione}
+
+\noindent
+\textbf{Esempio}: decidere se un numero é primo:
+\begin{itemize}
+    \item $I_{\pi} = \N$
+    \item $O_{\pi} = \{\text{sí},\text{no}\}$
+\end{itemize}
+
+\begin{lemma}[Tesi di Church Turing]
+    La tesi di Church Turing afferma che la classe delle funzioni calcolabile coincide con quella delle funzioni calcolabili da una macchina di Turing. 
+\end{lemma}
+
+Da questo ne deriva che qualsiasi tipo di macchina potrá calcolare solo le stesse funzioni che calcola una macchina di Turing. Una macchina quantistica, per esempio, a livello di calcolo é equivalente a una di Turing (ma non a livello di tempo dove si ha la quantum supremacy).
+
+\begin{definizione}[Algoritmo]
+    Un algoritmo per il problema $\pi$ é una macchina di Turing che preso un input $x\in I_{\pi}$ restituisce in output $y\in O_{\pi}$ tale che $y\in\text{Sol}_{\pi}(x)$.
+\end{definizione}
+
+Tutti i problemi sono risolvibili? La risposta é no. Una motivazione intuitiva é che un qualsiasi algoritmo puó essere rappresentato da una stringa binaria; l'insieme di tutti i possibili algoritmi avrá quindi la stessa cardinalitá di $2^* \sim \N$.
+
+Tutte le funzioni soluzione dei problemi di decisione hanno la stessa cardinalitá di $2^{2^*} \sim \RN$.
+
+É noto che $\N \nsim \RN$ e quindi esistono delle funzioni soluzione che non possono essere calcolate da un algoritmo.
+
+\subsection{Teoria della complessità}
+Si considerino, da questo momento in poi, solo i problemi risolvibili. La domanda su cui la teoria della complessità si fonda é: quanto efficaciemente si riesce a risolvere un problema?
+
+Ci sono due branche della teoria della complessità, algoritmica e strutturale.
+
+\subsubsection{Teoria della complessità algoritmica e strutturale}
+La \textbf{teoria della complessità algoritmica} si chiede quante risorse servono ad un algoritmo per risolvere un problema.
+Le risorse possono essere:
+\begin{itemize}
+    \item il tempo, contato tipicamente come numero di passi;
+    \item lo spazio di memoria;
+    \item energia dissipata;
+    \item numero di CPU nel punto di carico massimo.
+\end{itemize}
+
+\noindent
+Si userá quasi sempre il tempo. Sia $T_A$ la funzione tempo:
+$$ T_A:I_\pi \rightarrow \N $$
+che, per ogni input, indica quanto ci mette l'algoritmo $A$ a terminare. Il calcolo di $T_A$ é molto scomodo e difficile. Si userá infatti la funzione:
+$$ t_A:\N \rightarrow \N $$
+definita come segue: 
+$$ t_A(n) = \max\{T_A(x) : x\in I_\pi \wedge |x|=n\} $$
+che applica la filosofia worst case per ogni lunghezza $n$ di input. Si prenderá quindi il caso peggiore di tempo impiegato dall'algoritmo $A$ su tutti gli input lunghi $n$.
+
+
+Dall'altra parte, fissato un problema $\pi$, la \textbf{teoria della complessità strutturale} si chiede quale sia la complessità del problema stesso e non di uno specifico algoritmo che lo risolve.
+
+\subsubsection{Limiti superiori e inferiori}
+
+Per entrambe le teorie si userá la complessità asintotica ovvero si studierá come si comporta l'algoritmo in relazione alla lunghezza $n$ dell'input. Si useranno quindi i simboli di Landau $O$ e $\Omega$ per indicare rispettivamente:
+\begin{itemize}
+    \item Upper bound: si cerca un algoritmo che risolve il problema; la sua complessità fará da limite superiore del problema, o in altre parole, avendo trovato un algoritmo che funziona in un determinato tempo si potrá al massimo trovarne altri piú efficienti. Per indicare l'upper bound si userá la notazione $O(f(n))$. Si cercherá di abbassare questo limite.
+    \item Lower bound: si dimostra che il problema non puó essere risolto in meno di $f(n)$ risorse e si indica con $\Omega(f(n))$. Si cercherá di alzare questo limite.
+\end{itemize}
+
+Se si riesce a far coincidere l'upper bound e il lower bound vuol dire che si é trovato un algoritmo che risolve il problema nella maniera piú efficiente possibile. Questa situazione si indica con $\Theta(f(n))$. Purtroppo questo caso é raro e tipicamente resta un buon gap tra i due limiti. Un esempio puó essere l'ordinamento di array che si é trovato essere $\Theta(n\log{n})$.
+
+I casi piú interessanti si trovano in una zona grigia dove l'upper bound é esponenziale e il lower bound polinomiale. In questo caso non si sa se esistono algoritmi efficienti (quindi polinomiali) che risolvono il problema.

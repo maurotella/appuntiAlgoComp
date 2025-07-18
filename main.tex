@@ -1,0 +1,49 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{float}
+\usepackage[italian]{babel}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{geometry}
+
+\newcommand{\RN}{\ensuremath{\mathbb{R}}}
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\quotes}[1]{``#1''}
+
+\theoremstyle{definition}
+\newtheorem{theorem}{Teorema}
+\newtheorem{definizione}{Definizione}
+\newtheorem{lemma}{Lemma}
+
+\title{
+    \begin{figure}[H]
+        \includegraphics[width=\textwidth]{figures/titolo.pdf}
+    \end{figure}
+    %\Huge Algoritmi e Complessità\\[.2em]
+    \includegraphics[width=.3\textwidth]{figures/boldi.pdf}\\
+    \Large Anno accademico 2024/25
+}
+\author{
+    \normalsize Note di Mauro Tellaroli
+}
+\date{}
+
+\begin{document}
+
+\newgeometry{left=1cm,right=1cm,bottom=0.1cm}
+\maketitle
+\restoregeometry
+\clearpage
+
+\setcounter{page}{1}
+\tableofcontents
+\clearpage
+
+\input{sections/1_intro_algo.tex}
+\input{sections/2_problemi_decisione.tex}
+
+\end{document}
